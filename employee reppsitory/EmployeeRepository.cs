@@ -32,12 +32,18 @@ namespace employee_reppsitory
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue(StoredProcedureparameters.EmployeeName, employee.name);
                 cmd.Parameters.AddWithValue(StoredProcedureparameters.EmployeeSalary, employee.salary);
+                SqlParameter outputParam = new SqlParameter(StoredProcedureparameters.Insertedvariable, SqlDbType.Int);
+                outputParam.Direction = ParameterDirection.Output;//if storedprocedure returns any output params value.by using this process we can return
+                cmd.Parameters.Add(outputParam);//need to add output parameter to sqlcommand object.this is the rule.
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
                 da.Fill(ds);
+                var employeeCount = (int)cmd.Parameters[StoredProcedureparameters.Insertedvariable].Value;
+                return true;
 
             }
-            return true;
+            
             }
 
         public async Task<bool> DeleteEmployee(int id)
@@ -54,7 +60,7 @@ namespace employee_reppsitory
             return true;
         }
 
-        public Task<List<Employee>> GetAllEmployees()
+        public async Task<List<Employee>> GetAllEmployees()
         {
             using(SqlConnection cn = _connectionFactory.Hotel_dbConnectionstring())
             {
@@ -75,7 +81,7 @@ namespace employee_reppsitory
                     };
                     employees.Add(employee);
                 }
-                return Task.FromResult(employees);
+                return employees;
             }
         }
 
@@ -86,11 +92,13 @@ namespace employee_reppsitory
             {
                 SqlCommand cmd = new SqlCommand(Storedprocedurenames.GetEmployeeByEmpid, cn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                SqlDataAdapter adp = new SqlDataAdapter();
+                cmd.Parameters.AddWithValue(StoredProcedureparameters.EmployeeID, id);
+
+                SqlDataAdapter adp = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
                 adp.Fill(ds);
-                DataTable dt = new DataTable();
-                foreach (DataRow row in dt.Rows)
+                //DataTable dt = new DataTable();
+                foreach (DataRow row in ds.Tables[0].Rows)
                 {
                     emp.name = Convert.ToString(row["empname"]);
                     emp.salary = Convert.ToInt32(row["empsalary"]);

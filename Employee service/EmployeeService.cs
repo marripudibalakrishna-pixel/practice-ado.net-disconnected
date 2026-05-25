@@ -40,7 +40,7 @@ namespace Employee_service
         {
             List<EmployeeDto> emplistdto = new List<EmployeeDto>();
             var emplist = await _employeeRepository.GetAllEmployees();
-            foreach (var emp in emplistdto)
+            foreach (var emp in emplist)
             {
                 EmployeeDto empdto = new EmployeeDto();
                 empdto.id = emp.id;
