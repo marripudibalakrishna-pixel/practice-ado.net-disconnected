@@ -13,5 +13,16 @@ namespace Entities.Utils
         public static string EmployeeSalary = "@empsalary";
         public static string Insertedvariable = "@insertvalue";
 
+        #region IloggingFactoryparameters
+        public static string username = "@username";
+        public static string loglevel = "@LogLevel";
+        public static string messagetemplate = "@MessageTemplate";
+
+        #endregion
+
     }
+
+    #region IloggingFactoryparameters
+
+    #endregion
 }

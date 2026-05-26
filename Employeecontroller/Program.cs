@@ -2,6 +2,7 @@ using Dbconnectivity.ConnectionFactory;
 using employee_reppsitory;
 using Employee_service;
 using Entities.Interfaces;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IConnectionFactory, ConnectionFactory>();
+builder.Services.AddScoped<ILoggingFactory, LoggingFactory>();
+builder.Host.UseSerilog((context, configuration) =>
+    configuration.ReadFrom.Configuration(context.Configuration));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

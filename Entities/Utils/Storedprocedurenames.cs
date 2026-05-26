@@ -14,5 +14,11 @@ namespace Entities.Utils
         public static string GetEmployee = "Usp_GetEmployee";
         public static string GetEmployeeByEmpid = "Usp_GetEmployeeId";
 
+        #region loggingfactory parameters
+        public static string projectlevellogdb = "Usp_ProjectLevellog";
+        public static string projecterrorlevellogdb = "ProjectLevelErrorlog";
+
+        #endregion
+
     }
 }
