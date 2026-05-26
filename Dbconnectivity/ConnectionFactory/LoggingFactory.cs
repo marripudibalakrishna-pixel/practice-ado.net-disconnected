@@ -1,14 +1,16 @@
 ﻿using Dapper;
-using Entities.Dtos;    
 using Entities.Interfaces;
 using Entities.Utils;
-using Microsoft.Data.SqlClient;
-using Serilog.Events;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace DapperWith4DatabaseCommunication.Data
+namespace Dbconnectivity.ConnectionFactory
 {
-    public class LoggingFactory : Interfaces.ILoggingFactory
+    public class LoggingFactory : ILoggingFactory
     {
         #region connectionFactory
         private readonly IConnectionFactory _connectionFactory;
@@ -43,7 +45,7 @@ namespace DapperWith4DatabaseCommunication.Data
                 p.Add(StoredProcedureparameters.ErrorLog_StatusCode, statusCode);
                 p.Add(StoredProcedureparameters.ErrorLog_ErrorMessage, ErrorMessage);
                 p.Add(StoredProcedureparameters.ErrorLog_StackTraceError, StackTraceError);
-                p.Add(StoredProcedureparameters .ErrorLog_InnerExceptionError, InnerExceptionError);
+                p.Add(StoredProcedureparameters.ErrorLog_InnerExceptionError, InnerExceptionError);
                 await con.ExecuteScalarAsync(Storedprocedurenames.AddProjectLevelErrorlog, p, commandType: CommandType.StoredProcedure);
                 return true;
             }
