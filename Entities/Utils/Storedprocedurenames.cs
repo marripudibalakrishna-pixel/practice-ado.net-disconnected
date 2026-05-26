@@ -1,4 +1,4 @@
-﻿namespace Entities.Utils;
+﻿namespace Entities.Utils
 {
     public static class Storedprocedurenames
     {//#region is used to grouping the code at one place  for better organization and readability.(singleline statement for interview purpose)
