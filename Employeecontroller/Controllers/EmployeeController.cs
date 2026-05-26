@@ -37,15 +37,28 @@ namespace Employeecontroller.Controllers
         [Route("AddEmployee")]
         public async Task<IActionResult> AddEmployee(EmployeeDto employee)
         {
-            Log.Information("post method execution started");
+            try
+            {
+                int a = 10;
+                int b = 0;
+                int c = a / b;
+                //throw new Exception("Simulated exception for testing error handling.");
+                Log.Information("post method execution started");
 
-           await  _loggingFactory.IlogMessages("bala", "information", $"getmethod started with name{employee.name}");
-            await _loggingFactory.IlogMessages("bala", "information", $"getmethod started with salary{employee.salary}");
+                await _loggingFactory.IlogMessages("bala", "information", $"getmethod started with name{employee.name}");
+                await _loggingFactory.IlogMessages("bala", "information", $"getmethod started with salary{employee.salary}");
 
-            var result = await _employeeService.AddEmployee(employee);
-            Log.Information("post method execution ended");
+                var result = await _employeeService.AddEmployee(employee);
+                Log.Information("post method execution ended");
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("An error occurred while adding an employee: {exceptional message},{datetime}", ex.Message,DateTime.Today);
+                await _loggingFactory.IlogMessages("bala", "error", $"An error occurred while adding an employee: {ex.Message}");
+                return StatusCode(500, "An error occurred while processing your request.");
+            }
         }
         [HttpPut]
         [Route("UpdateEmployee")]
