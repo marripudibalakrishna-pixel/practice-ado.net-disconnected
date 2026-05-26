@@ -39,9 +39,9 @@ namespace Employeecontroller.Controllers
         {
             try
             {
-                int a = 10;
+               /* int a = 10;
                 int b = 0;
-                int c = a / b;
+                int c = a / b;*/
                 //throw new Exception("Simulated exception for testing error handling.");
                 Log.Information("post method execution started");
 
