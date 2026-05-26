@@ -1,3 +1,5 @@
+using DapperWith4DatabaseCommunication.Data;
+using DapperWith4DatabaseCommunication.Interfaces;
 using Dbconnectivity.ConnectionFactory;
 using employee_reppsitory;
 using Employee_service;
@@ -14,6 +16,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IConnectionFactory, ConnectionFactory>();
+builder.Services.AddScoped<ILoggingFactory , LoggingFactory>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
