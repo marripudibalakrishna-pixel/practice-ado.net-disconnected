@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.79" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Dbconnectivity\Dbconnectivity.csproj" />
     <ProjectReference Include="..\Entities\Entities.csproj" />
   </ItemGroup>

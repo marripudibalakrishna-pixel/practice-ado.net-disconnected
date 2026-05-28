@@ -14,5 +14,9 @@ namespace Entities.Utils
         public static string GetEmployee = "Usp_GetEmployee";
         public static string GetEmployeeByEmpid = "Usp_GetEmployeeId";
 
+        #region USER REGISTRARION
+        public static string Usp_UserResgistration = "Usp_UserResgistration";
+        #endregion
+
     }
 }
