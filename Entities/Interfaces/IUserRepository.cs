@@ -11,6 +11,8 @@ namespace Entities.Interfaces
     public interface IUserRepository
     {
          Task<UserSignInResponse> UserResgistration(Users usersObj);
+        Task<UserSignInResponse> UserRolesMapping(UserRole userRoleObj);
+
 
     }
 }

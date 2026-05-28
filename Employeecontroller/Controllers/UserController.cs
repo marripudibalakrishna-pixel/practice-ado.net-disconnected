@@ -38,6 +38,14 @@ namespace Employeecontroller.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
+        [HttpPost]
+        [Route("Userrolemapping")]
+        public async Task<IActionResult>UserRoleMapping([FromBody] UserRoleDto userRoleDto)
+        {
+          var result=  await _userService.UserRolesMapping(userRoleDto);
+            return Ok(result);
+        }
+    
     }
 }
         

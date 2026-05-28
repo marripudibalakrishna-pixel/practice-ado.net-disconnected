@@ -16,6 +16,8 @@ builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IConnectionFactory, ConnectionFactory>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IRolesService, RoleService>();
+builder.Services.AddScoped<IRolesRepository, Roles_Repository>();
 
 //builder.Services.AddCors(options =>
 //{

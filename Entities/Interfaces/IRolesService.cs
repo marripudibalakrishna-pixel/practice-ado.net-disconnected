@@ -8,11 +8,9 @@ using System.Threading.Tasks;
 
 namespace Entities.Interfaces
 {
-    public interface IUserService
+    public interface IRolesService
     {
-        Task<UserSignInResponse> UserResgistration(UserDto usersObj);
-        Task<UserSignInResponse> UserRolesMapping(UserRoleDto userRoleDTOObj);
-
+        public Task<UserSignInResponse> RolesCreation(RolesDto rolesobj);
 
     }
 }

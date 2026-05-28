@@ -30,5 +30,14 @@ namespace Employee_service
             var result = await _UserRepository.UserResgistration(users);
             return result;
         }
+        public async Task<UserSignInResponse> UserRolesMapping(UserRoleDto userRoleDTOObj)
+        {
+            UserRole userRole = new UserRole();
+            userRole.UserId = userRoleDTOObj.UserId;
+            userRole.RoleId = userRoleDTOObj.RoleId;
+            return await _UserRepository.UserRolesMapping(userRole);
+        }
     }
+
 }
+

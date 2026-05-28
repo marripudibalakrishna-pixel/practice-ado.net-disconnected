@@ -24,7 +24,7 @@ namespace employee_reppsitory
         }
         public async Task<UserSignInResponse> UserResgistration(Users usersObj)
         {
-            using(IDbConnection cn = _connectionFactory.Hotel_dbConnectionstring())
+            using (IDbConnection cn = _connectionFactory.Hotel_dbConnectionstring())
             {
                 var encryptText = EncryptionLibrary.EncryptText(usersObj.Password);
                 //==========******For Testing Point of view you  can see the  decrypt text=======
@@ -33,14 +33,27 @@ namespace employee_reppsitory
                 var p = new DynamicParameters();
                 p.Add("@UserName", usersObj.Username);
                 p.Add("@Password", encryptText);//here pass the encrypted string to store in database.password is secure
-                p.Add("@EmailId", usersObj.Email   );
+                p.Add("@EmailId", usersObj.Email);
                 p.Add("@PhoneNumber", usersObj.PhoneNumber);
                 p.Add("@Address", usersObj.Address);
                 p.Add("@IsActive", usersObj.IsActive);
                 var result = await cn.QuerySingleAsync<UserSignInResponse>(Storedprocedurenames.Usp_UserResgistration, p, commandType: CommandType.StoredProcedure);
                 return result;
             }
-             
+
+
+        }
+
+        public async Task<UserSignInResponse> UserRolesMapping(UserRole userRoleObj)
+        {
+            using (IDbConnection con = _connectionFactory.Hotel_dbConnectionstring())
+            {
+                var p = new DynamicParameters();
+                p.Add("@RoleId", userRoleObj.RoleId);
+                p.Add("@UserId", userRoleObj.UserId);
+                var result = await con.QuerySingleAsync<UserSignInResponse>("Usp_UserRolesMapping", p, commandType: CommandType.StoredProcedure);
+                return result;
+            }
         }
     }
 }
